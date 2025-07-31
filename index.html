@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Somebody Pleasure V2</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url("1000001406.gif") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    #lyrics {
+      color: white;
+      font-size: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 800px;
+      text-shadow: 2px 2px 4px #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="lyrics">Loading...</div>
+
+  <script>
+    const lyrics = [
+      { text: "I hold imagination", delay: 500 },
+      { text: "Got full of love this sadness", delay: 5200 },
+      { text: "I don't feel something special", delay: 9800 },
+      { text: "Turn on the floor to get some special", delay: 13400 },
+      { text: "Never thought I'm leaving me", delay: 17400 },
+      { text: "Thought the truth that has been stolen", delay: 21500 },
+      { text: "It was in a blink of an eye", delay: 26500 },
+      { text: "Find a way how to say goodbye", delay: 30300 },
+      { text: "I've got to take me away from all sadness", delay: 33900 },
+      { text: "Stitch all my wounds, confess all the sins", delay: 43200 },
+      { text: "And took all my insecure", delay: 47000 }
+    ];
+
+    const lyricsDiv = document.getElementById("lyrics");
+
+    function showLyrics() {
+      lyricsDiv.innerHTML = "";
+      lyrics.forEach((line) => {
+        setTimeout(() => {
+          lyricsDiv.innerHTML = line.text;
+        }, line.delay);
+      });
+    }
+
+    window.onload = showLyrics;
+  </script>
+</body>
+</html>
