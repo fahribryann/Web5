@@ -68,7 +68,7 @@
       for (let i = 0; i < lyrics.length; i++) {
         const { text, delay } = lyrics[i];
         await new Promise(res => setTimeout(res, i === 0 ? delay : delay - lyrics[i - 1].delay));
-        await typeLine(text, 30); // Speed ketik per huruf (ms)
+        await typeLine(text, 60); // Speed ketik per huruf (ms)
       }
     }
 
