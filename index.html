@@ -25,6 +25,7 @@
       width: 90%;
       max-width: 800px;
       text-shadow: 2px 2px 4px #000;
+      min-height: 2em;
     }
   </style>
 </head>
@@ -48,13 +49,27 @@
 
     const lyricsDiv = document.getElementById("lyrics");
 
-    function showLyrics() {
-      lyricsDiv.innerHTML = "";
-      lyrics.forEach((line) => {
-        setTimeout(() => {
-          lyricsDiv.innerHTML = line.text;
-        }, line.delay);
+    function typeLine(text, speed = 50) {
+      return new Promise(resolve => {
+        let i = 0;
+        lyricsDiv.innerHTML = '';
+        const interval = setInterval(() => {
+          lyricsDiv.innerHTML += text.charAt(i);
+          i++;
+          if (i >= text.length) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, speed);
       });
+    }
+
+    async function showLyrics() {
+      for (let i = 0; i < lyrics.length; i++) {
+        const { text, delay } = lyrics[i];
+        await new Promise(res => setTimeout(res, i === 0 ? delay : delay - lyrics[i - 1].delay));
+        await typeLine(text, 30); // Speed ketik per huruf (ms)
+      }
     }
 
     window.onload = showLyrics;
